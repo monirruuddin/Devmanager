@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import {Form,Button,Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker'
 import { useForm } from "react-hook-form";
@@ -6,10 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {toast} from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
+import { ContactContext } from '../../Context/Contact.Context';
 
 
-function ContactForm({addContactItem,contact,updateContact}) {
+function ContactForm({contact}) {
 
+const {addContactItem,updateContact} =  useContext(ContactContext)
     // use it for validation
     const schema = yup
       .object({

@@ -21,35 +21,6 @@ import {ContactContext} from './Context/Contact.Context'
 function App() {
    const [contacts,setContact]= useState(initialContacts);
    
-
-   const deleteElement = (id)=>{
-    const afterDeletecontacts = contacts.filter((contact)=> contact.id !== id)
-    setContact(afterDeletecontacts)
-    
-  }
-  const updateContact=(updateContactItem,id)=>{
-
-      const afterUpdatedata = contacts.map((item)=>{
-        if(item.id === id){
-          return{
-            ...updateContactItem
-          }
-        }else{
-            return item;
-          
-        }
-      })
-      setContact(afterUpdatedata)
-      
-    
-  }
-  const addContactItem =(contact)=>{
-    const addMoreConatact = {
-      id: uuidv4(),
-      ...contact,
-    }
-    setContact([...contacts,addMoreConatact])
-  }
   // console.log(contacts);
   return (
     <div className="App">
@@ -72,11 +43,11 @@ function App() {
         
       <Routes>
         <Route index element={<Home/>}/>
-        <Route path="/add-contact" element={<AddContact addContactItem={addContactItem}/>}/>
-        <Route path="/contacts" element={<Contacts conatctsDate={contacts} deleteElement={deleteElement} />}/>
+        <Route path="/add-contact" element={<AddContact />}/>
+        <Route path="/contacts" element={<Contacts />}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/edit-contact/:id" element={<EditContact contacts={contacts} updateContact={updateContact}/>}/>
-        <Route path="/contacts/:id" element={<ContactDetails contacts={contacts} deleteElement={deleteElement}/>}/>
+        <Route path="/edit-contact/:id" element={<EditContact />}/>
+        <Route path="/contacts/:id" element={<ContactDetails />}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="*" element={<Notfound/>}/>
       </Routes>
